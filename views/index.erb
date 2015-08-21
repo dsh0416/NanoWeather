@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+      #map { width: 1000px; height: 1000px; }
+  </style>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,visualization">
+  </script>
+</head>
+<body>
+<div id="map">
+</div>
+<script>
+    var heatmapData = [
+        {
+            location: new google.maps.LatLng(0, 0),
+            weight: 0
+        }];
+    function eqfeed_callback(results) {
+
+        for (var i = 0; i < results.features.length; i++) {
+            var coords = results.features[i].geometry.coordinates;
+            var latLng = new google.maps.LatLng(coords[1], coords[0]);
+            heatmapData.push(latLng);
+        }
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+            data: heatmapData,
+            dissipating: false,
+            map: map
+        });
+    }
+
+    function initialize() {
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+            center: new google.maps.LatLng(25.048649, 121.536809),
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+            data: heatmapData
+        });
+        heatmap.setMap(map);
+
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</body>
+
+</html>
