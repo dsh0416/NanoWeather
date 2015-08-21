@@ -16,6 +16,6 @@ data = JSON.parse(result.body)
 
 data['result']['results'].each do |sensor|
   # puts "id = #{sensor['_id']} AvgSpd = #{sensor['AvgSpd']} AvgOcc = #{sensor['AvgOcc']}"
-  row = {:SessionId => sensor['SectionId'], :StartWgsX => sensor['StartWgsX'], :StartWgsY => sensor['StartWgsY'], :EndWgsX => sensor['EndWgsX'], :EndWgsY => sensor['EndWgsY'] }
+  row = {SessionId:sensor['SectionId'],StartWgsX:sensor['StartWgsX'],StartWgsY:sensor['StartWgsY'],EndWgsX:sensor['EndWgsX'],EndWgsY:sensor['EndWgsY'] }
   collection.insert_one(row)
 end

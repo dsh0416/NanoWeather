@@ -18,7 +18,7 @@ while true
     data = JSON.parse(result.body)
 
     data['result']['results'].each do |sensor|
-      row = {:time => now_time, :SessionId => sensor['SectionId'], :AvgSpd => sensor['AvgSpd'], :AvgOcc => sensor['AvgOcc']}
+      row = {time:now_time,SessionId:sensor['SectionId'],AvgSpd:sensor['AvgSpd'],AvgOcc:sensor['AvgOcc']}
       collection.insert_one(row)
     end
     puts "Fetch Sucess Time:#{now_time}"
