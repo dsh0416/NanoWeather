@@ -106,5 +106,9 @@ while true
 
     html.close
 
+    json = File.open('./json','w+')
+    json.write(JSON.generate(ans))
+    json.close
+
   end
 end
