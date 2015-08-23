@@ -4,16 +4,17 @@ require 'mongo'
 Mongo::Logger.logger.level = ::Logger::FATAL
 
 while true
-  puts 'INPUT PARAMETER'
-  input = gets.chomp
+  # puts 'INPUT PARAMETER'
+  # input = gets.chomp
 
-  if input == '-1'
-    exit(0)
-  end
+  # if input == '-1'
+  #   exit(0)
+  # end
 
-  if input == '0'
+  # if input == '0'
     puts 'SENSITIVITY'
-    input = gets.chomp.to_i
+    # input = gets.chomp.to_i
+    input = 3
     db = Mongo::Client.new('mongodb://hacker:hacker@localhost:27017/admin')
     collection_vd = db['vd_info']
     collection_sensor = db['sensor_info']
@@ -110,5 +111,6 @@ while true
     json.write(JSON.generate(ans))
     json.close
 
-  end
+  # end
+  sleep(305)
 end
